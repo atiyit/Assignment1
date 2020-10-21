@@ -1,0 +1,162 @@
+﻿@page "/ManagerPerson"
+@using global::Models
+@using Assignment.Models
+@using FileData
+@using System.Data.Common
+<h3>ManagerPerson</h3>
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<AuthorizeView>
+    <NotAuthorized>
+        <p>You don't have permission to access!</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Policy="Guest">
+        <p>You don't have permission to access!</p>
+</AuthorizeView>
+<AuthorizeView Policy="Manager">
+    
+    <div class="form-group">
+        <label>Firstname：</label>
+        <input type="text" placeholder="firstname" @bind-value="firstname"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Lastname：</label>
+        <input type="text" placeholder="lastname" @bind-value="lastname"/>
+    </div>
+    <div class="form-group">
+        <label>Age:</label>
+        <input type="text" placeholder="age" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="age"/>
+    </div>
+    
+    <div class="form-group">
+                <label>Sex:</label>
+                <input type="text" placeholder="sex" @bind-value="sex"/>
+            </div>
+        
+        <div class="form-group">
+                     <label>Haircolor:</label>
+                     <input type="text" placeholder="haircolor" @bind-value="hairColor"/>
+                 </div>
+        
+        
+         <div class="form-group">
+                         <label>Eyecolor:</label>
+                         <input type="text" placeholder="eyecolor" @bind-value="eyeColor"/>
+                     </div>
+    
+    <div class="form-group">
+        <label>Height:</label>
+        <input type="text" placeholder="height" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="height"/>
+    </div>
+    <div class="form-group">
+        <label>Weight:</label>
+        <input type="text" placeholder="weight" oninput="value=value.replace(/[^\d.]/g,'')" @bind-value="weight"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Job:</label>
+        <input type="text" placeholder="job" @bind-value="job"/>
+    </div>
+    
+    <button @onclick="addPerson">
+        add
+    </button>
+    <div style="color:red">@message</div>
+</AuthorizeView>
+
+<AuthorizeView Policy="Admin">
+    
+    <div class="form-group">
+        <label>Firstname：</label>
+        <input type="text" placeholder="firstname" @bind-value="firstname"/>
+    </div>
+    
+    <div class="form-group">
+                    <label>Lastname：</label>
+                    <input type="text" placeholder="lastname" @bind-value="lastname"/>
+                </div>
+    <div class="form-group">
+        <label>Age:</label>
+        <input type="text" placeholder="age" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="age"/>
+    </div>
+    
+    <div class="form-group">
+            <label>Sex:</label>
+            <input type="text" placeholder="sex" @bind-value="sex"/>
+        </div>
+    
+    <div class="form-group">
+                 <label>Haircolor:</label>
+                 <input type="text" placeholder="haircolor" @bind-value="hairColor"/>
+             </div>
+    
+    
+     <div class="form-group">
+                     <label>Eyecolor:</label>
+                     <input type="text" placeholder="eyecolor" @bind-value="eyeColor"/>
+                 </div>
+    
+    <div class="form-group">
+        <label>Height:</label>
+        <input type="text" placeholder="height" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="height"/>
+    </div>
+    <div class="form-group">
+        <label>Weight:</label>
+        <input type="text" placeholder="weight" oninput="value=value.replace(/[^\d.]/g,'')" @bind-value="weight"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Job:</label>
+        <input type="text" placeholder="job" @bind-value="job"/>
+    </div>
+    
+    <button @onclick="addPerson">
+        add
+    </button>
+     <div style="color:red">@message</div>
+</AuthorizeView>
+
+@code {
+    private string firstname;
+    private string lastname;
+    private string sex;
+    private int age;
+    private string hairColor;
+    private string eyeColor;
+    private int height;
+    private float weight;
+    private string message;
+    private string job;
+    public async Task addPerson() {
+        message = "";
+        try
+        {
+            Person person = new Person();
+            Adult adult = new Adult();
+            FileContext fileContext = new FileContext();
+            IList<Adult> adults = fileContext.Adults;
+            person.Id = adults.Count + 1;
+            person.FirstName = firstname;
+            person.LastName = lastname;
+            person.Sex = sex;
+            person.Age = age;
+            person.EyeColor = eyeColor;
+            person.HairColor = hairColor;
+            person.Height = height;
+            person.Weight = weight;
+            adult.JobTitle = job;
+            adult.Update(person);
+            adults.Add(adult);
+            fileContext.SaveChanges();
+            message = "Add succeed!";
+            MessageModel.getInstance().messageManage = message;
+        } catch (Exception e) {
+            MessageModel.getInstance().messageManage = e.Message;
+        }
+    }
+
+
+}

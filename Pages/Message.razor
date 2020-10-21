@@ -1,0 +1,17 @@
+﻿@page "/Message"
+@using Assignment.Models
+@namespace MessageComponent
+ <button @onclick="Show">
+             UpdateMessage
+         </button>
+ <div style="color:red">@Messages</div>
+ 
+@code {
+
+    private string Messages;
+    public async Task Show()
+    {
+        Messages = MessageModel.getInstance().messageManage;
+    }
+
+}
