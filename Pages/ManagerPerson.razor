@@ -83,18 +83,28 @@
         <input type="text" placeholder="age" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="age"/>
     </div>
     
-    <div class="form-group">
-            <label>Sex:</label>
-            <input type="text" placeholder="sex" @bind-value="sex"/>
-        </div>
+    
     
     <div class="form-group">
-                 <label>Haircolor:</label>
-                 <input type="text" placeholder="haircolor" @bind-value="hairColor"/>
-             </div>
+        <label>Sex:</label>
+        <select @bind="sex">
+            <option>M</option>
+            <option>F</option>
+        </select>
+    </div>
     
     
-     <div class="form-group">
+    @* <div class="form-group"> *@
+    @*         <label>Sex:</label> *@
+    @*         <input type="text" placeholder="sex" @bind-value="sex"/> *@
+    @*     </div> *@
+    @* *@
+    <div class="form-group">
+        <label>Haircolor:</label>
+        <input type="text" placeholder="haircolor" @bind-value="hairColor"/>
+    </div>
+    
+    <div class="form-group">
                      <label>Eyecolor:</label>
                      <input type="text" placeholder="eyecolor" @bind-value="eyeColor"/>
                  </div>

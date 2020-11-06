@@ -502,7 +502,17 @@
     "Weight": 100.9,
     "Height": 177,
     "Sex": "F"
+  },
+  {
+    "JobTitle": "manager",
+    "Id": 0,
+    "FirstName": "a",
+    "LastName": "b",
+    "HairColor": "black",
+    "EyeColor": "black",
+    "Age": 20,
+    "Weight": 140,
+    "Height": 180,
+    "Sex": null
   }
- 
- 
 ]
