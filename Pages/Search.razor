@@ -9,6 +9,32 @@
 <div> LastName </div> <input type="text" @bind-value="lastName">
 <div> FirstName </div> <input type="text" @bind-value="firstName">
 <div> Sex </div> <input type="text" @bind-value="sex">
+
+<TableTemplate Items="persons">
+    <TableHeader>
+        <th>ID</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>HairColor</th>
+        <th>EyeColor</th>
+        <th>Height</th>
+        <th>Weight</th>
+    </TableHeader>
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.FirstName</td>
+        <td>@context.LastName</td>
+        <td>@context.Age</td>
+        <td>@context.Sex</td>
+        <td>@context.HairColor</td>
+        <td>@context.EyeColor</td>
+        <td>@context.Height</td>
+        <td>@context.Weight</td>
+    </RowTemplate>
+</TableTemplate>
+
 <div>
     <button @onclick="search"> search </button>
     <button @onclick="next"> next </button>
@@ -26,6 +52,12 @@
     List<Adult> result = new List<Adult>();
     private string output;
     private int count;
+    
+    private List<Person> persons = new List<Person>
+    {
+        new Person { Id = 2, FirstName = "Mr. Bigglesworth",LastName = "DD",Age = 40,Sex = "Male",EyeColor ="red",HairColor = "white",Height = 180,Weight = 140},
+    };
+
 
 
     public async Task search()
@@ -101,8 +133,7 @@
 
             
         }
-        
-        
+
     }
     
     public async Task clear()
