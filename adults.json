@@ -502,29 +502,7 @@
     "Weight": 100.9,
     "Height": 177,
     "Sex": "F"
-  },
-  {
-    "JobTitle": "test",
-    "Id": 1,
-    "FirstName": "test",
-    "LastName": "test",
-    "HairColor": null,
-    "EyeColor": null,
-    "Age": 50,
-    "Weight": 100,
-    "Height": 100,
-    "Sex": null
-  },
-  {
-    "JobTitle": "test",
-    "Id": 0,
-    "FirstName": "test",
-    "LastName": "test",
-    "HairColor": "Brown",
-    "EyeColor": "Brown",
-    "Age": 20,
-    "Weight": 100,
-    "Height": 100,
-    "Sex": "M"
   }
+ 
+ 
 ]

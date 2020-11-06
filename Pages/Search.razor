@@ -2,7 +2,7 @@
 @using FileData
 @using global::Models
 
-<h3>View and search personaaa</h3>
+<h3>View and search person</h3>
 
 <div> Min age </div> <input type="text" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="minAge"/>
 <div> Max age </div> <input type="text" oninput="value=value.replace(/[^\d]/g,'')" @bind-value="maxAge">
@@ -10,13 +10,14 @@
 <div> FirstName </div> <input type="text" @bind-value="firstName">
 <div> Sex </div> <input type="text" @bind-value="sex">
 
-<TableTemplate Items="persons">
+<TableTemplate Items="result">
     <TableHeader>
         <th>ID</th>
         <th>firstName</th>
         <th>lastName</th>
         <th>Age</th>
         <th>Sex</th>
+        <th>Job</th>
         <th>HairColor</th>
         <th>EyeColor</th>
         <th>Height</th>
@@ -28,6 +29,7 @@
         <td>@context.LastName</td>
         <td>@context.Age</td>
         <td>@context.Sex</td>
+        <td>@context.JobTitle</td>
         <td>@context.HairColor</td>
         <td>@context.EyeColor</td>
         <td>@context.Height</td>
@@ -53,13 +55,6 @@
     private string output;
     private int count;
     
-    private List<Person> persons = new List<Person>
-    {
-        new Person { Id = 2, FirstName = "Mr. Bigglesworth",LastName = "DD",Age = 40,Sex = "Male",EyeColor ="red",HairColor = "white",Height = 180,Weight = 140},
-    };
-
-
-
     public async Task search()
     {
         FileContext fileContext = new FileContext();
@@ -99,9 +94,7 @@
                     result.Add(adult);
                 }
             }
-            
         }
-        
         if (result.Count == 0)
         {
             output = "No match!";
@@ -130,8 +123,6 @@
         {
             count = 0;
             output = "ID:" + result[count].Id + "Firstname:" + result[count].FirstName + " Lastname:" + result[count].LastName + " Sex:" + result[count].Sex + " Job:" + result[count].JobTitle + " Height:" + result[count].Height + " Weight:" + result[count].Weight + " Age:" + result[count].Age + " HairColor:" + result[count].HairColor + " EyeColor:" + result[count].EyeColor;
-
-            
         }
 
     }
